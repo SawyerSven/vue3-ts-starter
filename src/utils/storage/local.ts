@@ -5,6 +5,7 @@ interface StorageData<T> {
   expire: number | null
 }
 
+
 function createLocalStorage<T extends StorageInterface.Local = StorageInterface.Local>() {
   /* 默认存储7天 */
   const DEFAULT_CACHE_TIME = 60 * 60 * 24 * 7;

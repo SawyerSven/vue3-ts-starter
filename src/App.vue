@@ -4,11 +4,12 @@ import { onMounted, ref } from 'vue'
 
 import { RouterView } from 'vue-router'
 import { useName } from './hooks/useName'
+import { request } from './services/request'
 
 const data = ref()
 
 onMounted(async () => {
-  data.value = (await axios.get('http://localhost:3000')).data
+  data.value = request.get('/')
 })
 
 const getError = async () => {
