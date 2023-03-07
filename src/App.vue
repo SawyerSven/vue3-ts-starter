@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import axios from '@/requests/restful/axios/index'
 import { onMounted, ref } from 'vue'
 
 import { RouterView } from 'vue-router'
@@ -9,12 +8,8 @@ import { request } from './services/request'
 const data = ref()
 
 onMounted(async () => {
-  data.value = request.get('/')
+  data.value = (await request.get('/')).data
 })
-
-const getError = async () => {
-  await axios.get('http://localhost:3000/err')
-}
 
 const { name, setName } = useName()
 </script>
@@ -25,7 +20,6 @@ const { name, setName } = useName()
     {{ data }}
     <RouterView />
     <el-button type="primary" @click="() => setName('sunsiyuan')">修改名称</el-button>
-    <el-button type="primary" @click="getError">获取error</el-button>
   </div>
 </template>
 
